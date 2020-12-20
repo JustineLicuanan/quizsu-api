@@ -3,8 +3,8 @@
 	"version": "0.1.0",
 	"main": "dist/app.js",
 	"scripts": {
-		"dev": "tsc && concurrently \"tsc -w\" \"nodemon\"",
-		"build": "tsc",
+		"dev": "rm -rf dist && tsc && concurrently \"tsc -w\" \"nodemon\"",
+		"build": "rm -rf dist && tsc",
 		"start": "node"
 	},
 	"author": "Justine Licuanan",

@@ -2,9 +2,11 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 
+import userRoutes from './routes/userRoutes';
+
 // Inits
 dotenv.config();
-const { DB_URI, PORT } = process.env;
+const { DB_URI, PORT = '3002' } = process.env;
 const app = express();
 
 // Connect to database
@@ -23,3 +25,6 @@ mongoose
 		app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
 	})
 	.catch((err) => console.log(err));
+
+// Routes
+app.use('/user', userRoutes);

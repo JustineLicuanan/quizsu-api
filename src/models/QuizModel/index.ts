@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+import { mustHaveOne } from '../../lib';
 import { IQuiz } from '../../types';
 import QuestionSchema from './QuestionSchema';
 import ResultSchema from './ResultSchema';
@@ -26,12 +27,11 @@ const QuizSchema = new Schema(
 		},
 		questions: {
 			type: [QuestionSchema],
-			minlength: [1, 'Quiz must have atleast 1 question'],
-			required: [true, 'Question field is required'],
+			validate: [mustHaveOne, 'Quiz must have atleast 1 question'],
 		},
 		results: [ResultSchema],
 	},
 	{ timestamps: true }
 );
 
-export default mongoose.model<IQuiz>('user', QuizSchema);
+export default mongoose.model<IQuiz>('quiz', QuizSchema);

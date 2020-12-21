@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import { mustHaveOne } from '../../lib';
+
 // Inits
 const Schema = mongoose.Schema;
 
@@ -11,10 +13,14 @@ export default new Schema(
 			required: [true, 'Question field is required'],
 		},
 		answers: {
-			type: [String],
-			trim: true,
-			minlength: [1, 'Question must have atleast 1 answer'],
-			required: [true, 'Answer field is required'],
+			type: [
+				{
+					type: String,
+					trim: true,
+					required: [true, 'Answer field is required'],
+				},
+			],
+			validate: [mustHaveOne, 'Question must have atleast 1 answer'],
 		},
 	},
 	{ timestamps: true }

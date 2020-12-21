@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 
-import userRoutes from './routes/userRoutes';
 import quizRoutes from './routes/quizRoutes';
 
 // Inits
@@ -27,6 +26,8 @@ mongoose
 	})
 	.catch((err) => console.log(err));
 
+// Middlewares
+app.use(express.json());
+
 // Routes
-app.use('/user', userRoutes);
 app.use('/quiz', quizRoutes);

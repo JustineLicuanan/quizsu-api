@@ -1,0 +1,21 @@
+@host = http://127.0.0.1:{{$dotenv PORT}}
+@password = ultimateQuizPassword
+
+# Create quiz endpoint
+POST {{host}}/quiz/create
+Content-Type: application/json
+
+{
+   "title": "True or False",
+   "password": "{{password}}",
+   "questions": [
+      {
+         "text": "Are you a developer?",
+         "answers": ["true", "t"]
+      },
+      {
+         "text": "Do you have a girlfriend?",
+         "answers": ["false", "f"]
+      }
+   ]
+}

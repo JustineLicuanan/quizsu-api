@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 
 import userRoutes from './routes/userRoutes';
+import quizRoutes from './routes/quizRoutes';
 
 // Inits
 dotenv.config();
@@ -28,3 +29,4 @@ mongoose
 
 // Routes
 app.use('/user', userRoutes);
+app.use('/quiz', quizRoutes);

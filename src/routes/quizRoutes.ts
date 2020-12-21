@@ -7,6 +7,8 @@ const router = express.Router();
 
 // Routes
 router.post('/create', controller.createPOST);
-router.get('/get/:id', controller.getQuizGET);
+router.post('/results/:id', controller.quizResultsPOST);
+router.get('/take/:id', controller.takeQuizGET);
+router.patch('/disable/:id', controller.disableQuizPATCH);
 
 export default router;

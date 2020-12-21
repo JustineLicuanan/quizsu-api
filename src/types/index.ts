@@ -30,3 +30,14 @@ export interface IUser extends Document {
 	password: string;
 	secretQuestion: ISecretQuestion;
 }
+
+export interface IQuestions {
+	text: string;
+	answers: string[];
+}
+
+export interface IQuiz extends Document {
+	title: string;
+	password: string;
+	questions: IQuestions;
+}

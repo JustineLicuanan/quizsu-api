@@ -6,6 +6,9 @@ export const registerPOST = (req: Request, res: Response) => {};
 // Login to server
 export const loginPOST = (req: Request, res: Response) => {};
 
+// Forgot user password
+export const forgotPassPOST = (req: Request, res: Response) => {};
+
 // Logout from server
 export const logoutGET = (req: Request, res: Response) => {};
 
@@ -17,6 +20,12 @@ export const profileUpdatePATCH = (req: Request, res: Response) => {};
 
 // Change user password
 export const profileChangePassPATCH = (req: Request, res: Response) => {};
+
+// Change user secret
+export const profileChangeSecretPATCH = (req: Request, res: Response) => {};
+
+// Reset user password
+export const resetPassPATCH = (req: Request, res: Response) => {};
 
 // Delete user account
 export const profileDeleteDELETE = (req: Request, res: Response) => {};

@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 
@@ -27,6 +28,7 @@ mongoose
 	.catch((err) => console.log(err));
 
 // Middlewares
+app.use(cors());
 app.use(express.json());
 
 // Routes

@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import AnswerSchema from './AnswerSchema';
+
 // Inits
 const Schema = mongoose.Schema;
 
@@ -10,11 +12,8 @@ export default new Schema(
 			trim: true,
 			required: [true, 'Name field is required'],
 		},
-		score: {
-			type: Number,
-			default: 0,
-			required: true,
-		},
+		answers: [AnswerSchema],
+		score: Number,
 	},
 	{ timestamps: true }
 );

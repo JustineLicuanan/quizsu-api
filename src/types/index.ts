@@ -5,8 +5,16 @@ export interface IQuestion extends Document {
 	answers: string[];
 }
 
-export interface IResult extends Document {
+export interface IQuizAnswer extends Document {
+	questionId: any;
+	answer: string;
+	correct?: boolean;
+}
+
+export interface IResult {
+	_id?: any;
 	name: string;
+	answers: IQuizAnswer[];
 	score: number;
 }
 

@@ -40,3 +40,13 @@ Content-Type: application/json
       }
    ]
 }
+
+###
+
+# Get quiz results endpoint
+POST {{host}}/quiz/results/{{quizId}}
+Content-Type: application/json
+
+{
+   "password": "{{quizPassword}}"
+}

@@ -49,7 +49,47 @@ export const createPOST = async (req: Request, res: Response) => {
 };
 
 // Get quiz results
-export const quizResultsPOST = (req: Request, res: Response) => {};
+export const quizResultsPOST = async (req: Request, res: Response) => {
+	try {
+		const { password } = req.body;
+		const quiz = await Quiz.findById(req.params.id).select(
+			'-createdAt -updatedAt -__v'
+		);
+
+		// Check if quiz existing
+		if (!quiz) {
+			res.status(404).json({
+				err: true,
+				message: 'Quiz not found',
+			});
+			return;
+		}
+
+		// Verify password
+		const isMatch = await bcrypt.compare(password, quiz.password);
+		if (!isMatch) {
+			res.status(400).json({
+				err: true,
+				message: 'Password is incorrect',
+			});
+			return;
+		}
+
+		const { _id, disabled, title, questions, results } = quiz;
+		res.json({
+			_id,
+			disabled,
+			title,
+			questions,
+			results,
+		});
+	} catch (err) {
+		res.status(400).json({
+			err: true,
+			message: err.message,
+		});
+	}
+};
 
 // Pass the quiz
 export const passQuizPOST = async (req: Request, res: Response) => {
@@ -64,7 +104,7 @@ export const passQuizPOST = async (req: Request, res: Response) => {
 
 		// Check if quiz existing
 		if (!quiz) {
-			res.status(400).json({
+			res.status(404).json({
 				err: true,
 				message: 'Quiz not found',
 			});
@@ -177,7 +217,7 @@ export const takeQuizGET = async (req: Request, res: Response) => {
 
 		// Check if quiz existing
 		if (!quiz) {
-			res.status(400).json({
+			res.status(404).json({
 				err: true,
 				message: 'Quiz not found',
 			});

@@ -55,7 +55,46 @@ export const quizResultsPOST = (req: Request, res: Response) => {};
 export const passQuizPOST = (req: Request, res: Response) => {};
 
 // Take a quiz
-export const takeQuizGET = (req: Request, res: Response) => {};
+export const takeQuizGET = async (req: Request, res: Response) => {
+	try {
+		const quiz = await Quiz.findById(req.params.id).select(
+			'-password -results -createdAt -updatedAt -__v'
+		);
+
+		if (!quiz) {
+			res.status(400).json({
+				err: true,
+				message: 'Quiz not found',
+			});
+			return;
+		}
+
+		const { _id, disabled, title } = quiz;
+
+		if (quiz.disabled) {
+			res.status(401).json({
+				err: true,
+				message: 'Quiz is now disabled',
+			});
+			return;
+		}
+
+		res.json({
+			_id,
+			disabled,
+			title,
+			questions: quiz.questions.map(({ _id, text }) => ({
+				_id,
+				text,
+			})),
+		});
+	} catch (err) {
+		res.status(400).json({
+			err: true,
+			message: err.message,
+		});
+	}
+};
 
 // Disable a quiz
 export const disableQuizPATCH = (req: Request, res: Response) => {};

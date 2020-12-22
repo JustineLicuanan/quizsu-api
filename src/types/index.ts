@@ -1,11 +1,11 @@
 import { Document } from 'mongoose';
 
-export interface IQuestion {
+export interface IQuestion extends Document {
 	text: string;
 	answers: string[];
 }
 
-export interface IResult {
+export interface IResult extends Document {
 	name: string;
 	score: number;
 }

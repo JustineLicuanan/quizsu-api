@@ -23,6 +23,16 @@ Content-Type: application/json
 
 ###
 
+# Get quiz results endpoint
+POST {{host}}/quiz/results/{{quizId}}
+Content-Type: application/json
+
+{
+   "password": "{{quizPassword}}"
+}
+
+###
+
 # Pass quiz endpoint
 POST {{host}}/quiz/pass/{{quizId}}
 Content-Type: application/json
@@ -43,8 +53,13 @@ Content-Type: application/json
 
 ###
 
-# Get quiz results endpoint
-POST {{host}}/quiz/results/{{quizId}}
+# Take quiz endpoint
+GET {{host}}/quiz/take/{{quizId}}
+
+###
+
+# Disable quiz endpoint
+PATCH {{host}}/quiz/disable/{{quizId}}
 Content-Type: application/json
 
 {

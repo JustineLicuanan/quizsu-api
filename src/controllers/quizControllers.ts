@@ -252,4 +252,42 @@ export const takeQuizGET = async (req: Request, res: Response) => {
 };
 
 // Disable a quiz
-export const disableQuizPATCH = (req: Request, res: Response) => {};
+export const disableQuizPATCH = async (req: Request, res: Response) => {
+	try {
+		const { password } = req.body;
+		const quiz = await Quiz.findById(req.params.id);
+
+		// Check if quiz existing
+		if (!quiz) {
+			res.status(404).json({
+				err: true,
+				message: 'Quiz not found',
+			});
+			return;
+		}
+
+		// Verify password
+		const isMatch = await bcrypt.compare(password, quiz.password);
+		if (!isMatch) {
+			res.status(400).json({
+				err: true,
+				message: 'Password is incorrect',
+			});
+			return;
+		}
+
+		// Save new quiz to database
+		quiz.disabled = true;
+		await quiz.save();
+
+		res.json({
+			success: true,
+			message: 'Quiz disabled successfully',
+		});
+	} catch (err) {
+		res.status(400).json({
+			err: true,
+			message: err.message,
+		});
+	}
+};

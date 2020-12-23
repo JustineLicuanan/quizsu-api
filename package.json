@@ -4,8 +4,8 @@
 	"main": "dist/app.js",
 	"scripts": {
 		"dev": "rm -rf dist && tsc && concurrently \"tsc -w\" \"nodemon\"",
-		"build": "rm -rf dist && tsc",
-		"start": "node"
+		"postinstall": "tsc",
+		"start": "node dist/app.js"
 	},
 	"author": "Justine Licuanan",
 	"license": "MIT",
@@ -27,5 +27,8 @@
 		"express": "^4.17.1",
 		"mongoose": "^5.11.8",
 		"validator": "^13.5.2"
+	},
+	"engines": {
+		"node": "14.15.1"
 	}
 }

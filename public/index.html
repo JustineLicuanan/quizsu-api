@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Quizsu API</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="header">Quizsu API Endpoints</h1>
+			<ul class="endpointList">
+				<li>
+					<p># Create quiz endpoint</p>
+					<p>POST /quiz/create</p>
+					<p>Content-Type: application/json</p>
+					<pre>
+{
+  "title": "True or False",
+  "password": "ultimateQuizPass",
+  "questions": [
+      {
+        "text":
+          "Are you a developer?",
+        "answers": ["true", "t"]
+      },
+      {
+        "text":
+          "Do you have a lovelife?",
+        "answers": ["false", "f"]
+      }
+  ]
+}</pre
+					>
+				</li>
+				<li>
+					<p># Get quiz results endpoint</p>
+					<p>POST /quiz/results/${id}</p>
+					<p>Content-Type: application/json</p>
+					<pre>
+{
+  "password": "ultimateQuizPass"
+}</pre
+					>
+				</li>
+				<li>
+					<p># Take quiz endpoint</p>
+					<p>GET /quiz/take/${id}</p>
+				</li>
+				<li>
+					<p># Pass quiz endpoint</p>
+					<p>POST /quiz/pass/${id}</p>
+					<p>Content-Type: application/json</p>
+					<pre>
+{
+  "name": "John Doe",
+  "answers": [
+      {
+        "questionId":
+          "fromTakeQuizEndpoint",
+        "answer": "t"
+      },
+      {
+        "questionId":
+          "fromTakeQuizEndpoint",
+        "answer": "false"
+      }
+  ]
+}</pre
+					>
+				</li>
+				<li>
+					<p># Disable quiz endpoint</p>
+					<p>PATCH /quiz/disable/${id}</p>
+					<p>Content-Type: application/json</p>
+					<pre>
+{
+  "password": "ultimateQuizPass"
+}</pre
+					>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
